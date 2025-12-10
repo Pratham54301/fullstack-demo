@@ -9,7 +9,6 @@ const {
 } = require("../controllers/contractController");
 
 
-// /api/contracts
 router.post("/", createContract);
 router.get("/", getContracts);
 router.get("/:id", getContractById);

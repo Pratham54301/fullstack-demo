@@ -16,10 +16,10 @@ function Home() {
 export default function App() {
   return (
     <div className="min-h-screen flex bg-slate-50">
-      {/* Left sidebar */}
+      
       <Sidebar />
 
-      {/* Right content */}
+      
       <div className="flex-1 border-l border-slate-200">
         <Routes>
           <Route path="/" element={<Home />} />

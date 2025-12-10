@@ -20,7 +20,6 @@ app.get("/", (req, res) => {
 });
 
 
-// main APIs
 app.use("/api/pages", pageRoutes);
 app.use("/api/contracts", contractRoutes);
 

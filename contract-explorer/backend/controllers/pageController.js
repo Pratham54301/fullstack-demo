@@ -1,7 +1,5 @@
 const Page = require("../models/Page");
 
-
-// Create Page
 exports.createPage = async (req, res) => {
   try {
     const page = await Page.create(req.body);
@@ -12,7 +10,6 @@ exports.createPage = async (req, res) => {
 };
 
 
-// Get All Pages (optionally by url)
 exports.getPages = async (req, res) => {
   try {
     const { url } = req.query;
@@ -30,7 +27,6 @@ exports.getPages = async (req, res) => {
 };
 
 
-// Get Page by ID
 exports.getPageById = async (req, res) => {
   try {
     const page = await Page.findById(req.params.id);
@@ -41,8 +37,6 @@ exports.getPageById = async (req, res) => {
   }
 };
 
-
-// Update Page
 exports.updatePage = async (req, res) => {
   try {
     const page = await Page.findByIdAndUpdate(req.params.id, req.body, {
@@ -56,7 +50,6 @@ exports.updatePage = async (req, res) => {
 };
 
 
-// Delete Page
 exports.deletePage = async (req, res) => {
   try {
     const page = await Page.findByIdAndDelete(req.params.id);

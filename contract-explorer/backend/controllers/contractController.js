@@ -2,7 +2,6 @@ const Contract = require("../models/Contract");
 const Page = require("../models/Page");
 
 
-// helper: convert filters object to mongo query
 const buildFilterFromConfig = (filtersConfig = {}) => {
   const mongoFilter = {};
 
@@ -19,7 +18,6 @@ const buildFilterFromConfig = (filtersConfig = {}) => {
 };
 
 
-// Create Contract
 exports.createContract = async (req, res) => {
   try {
     const contract = await Contract.create(req.body);
@@ -30,15 +28,12 @@ exports.createContract = async (req, res) => {
 };
 
 
-// Get Contracts (with dynamic filters + pageId)
 exports.getContracts = async (req, res) => {
   try {
     const { pageId, minAmount, maxAmount, ...userFilters } = req.query;
 
     let finalFilter = {};
 
-
-    // 1) Page filters from DB
     if (pageId) {
       const page = await Page.findById(pageId);
       if (page && page.filters) {
@@ -49,10 +44,8 @@ exports.getContracts = async (req, res) => {
       }
     }
 
-
-    // 2) User filters (override / add)
     Object.keys(userFilters).forEach((key) => {
-      // If comma separated (e.g. contractType=SOW,Master)
+  
       if (String(userFilters[key]).includes(",")) {
         finalFilter[key] = { $in: userFilters[key].split(",") };
       } else {
@@ -61,7 +54,7 @@ exports.getContracts = async (req, res) => {
     });
 
 
-    // 3) Amount range
+  
     if (minAmount || maxAmount) {
       finalFilter.amount = {};
       if (minAmount) finalFilter.amount.$gte = Number(minAmount);
@@ -77,7 +70,6 @@ exports.getContracts = async (req, res) => {
 };
 
 
-// Get Contract by ID
 exports.getContractById = async (req, res) => {
   try {
     const contract = await Contract.findById(req.params.id);
@@ -90,7 +82,6 @@ exports.getContractById = async (req, res) => {
 };
 
 
-// Update Contract
 exports.updateContract = async (req, res) => {
   try {
     const contract = await Contract.findByIdAndUpdate(
@@ -107,7 +98,6 @@ exports.updateContract = async (req, res) => {
 };
 
 
-// Delete Contract
 exports.deleteContract = async (req, res) => {
   try {
     const contract = await Contract.findByIdAndDelete(req.params.id);

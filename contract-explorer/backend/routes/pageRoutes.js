@@ -9,7 +9,6 @@ const {
 } = require("../controllers/pageController");
 
 
-// /api/pages
 router.post("/", createPage);
 router.get("/", getPages);
 router.get("/:id", getPageById);

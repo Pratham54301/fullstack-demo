@@ -22,7 +22,7 @@ type Contract = {
 export const DynamicPage = () => {
   const { url } = useParams<{ url: string }>();
 
-  // ✅ Page config
+  
   const {
     data: page,
     isLoading: loadingPage,
@@ -37,7 +37,7 @@ export const DynamicPage = () => {
     },
   });
 
-  // ✅ Contracts
+  
   const {
     data: contracts,
     isLoading: loadingContracts,
@@ -54,7 +54,7 @@ export const DynamicPage = () => {
     },
   });
 
-  // ✅ Refresh Handler (page + contracts)
+  
   const handleRefresh = async () => {
     await Promise.all([refetchPage(), refetchContracts()]);
   };
@@ -75,7 +75,7 @@ export const DynamicPage = () => {
 
   return (
     <div className="p-6">
-      {/* ✅ Header with Refresh Button */}
+      
       <div className="mb-4 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold">{page.title}</h1>
